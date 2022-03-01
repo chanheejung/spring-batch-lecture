@@ -35,6 +35,7 @@ public class JobParameterConfiguration {
                     @Override
                     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
 
+                        //M 방법1 - JobParameters로 받는다.
                         JobParameters jobParameters = contribution.getStepExecution().getJobParameters();
                         String name = jobParameters.getString("name");
                         long seq = jobParameters.getLong("seq");
@@ -46,6 +47,7 @@ public class JobParameterConfiguration {
                         System.out.println("date: " + date);
                         System.out.println("===========================");
 
+                        //M 방법2 - Map<String, Object> 으로 받는다.
                         Map<String, Object> jobParameters2 = chunkContext.getStepContext().getJobParameters();
                         String name2 = (String)jobParameters2.get("name");
                         long seq2 = (long)jobParameters2.get("seq");
