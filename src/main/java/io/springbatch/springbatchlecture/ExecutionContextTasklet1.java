@@ -13,7 +13,9 @@ public class ExecutionContextTasklet1 implements Tasklet {
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
 
+//        ExecutionContext jobExecutionContext = contribution.getStepExecution().getJobExecution().getExecutionContext();
         ExecutionContext jobExecutionContext = chunkContext.getStepContext().getStepExecution().getJobExecution().getExecutionContext();
+//        ExecutionContext stepExecutionContext = contribution.getStepExecution().getExecutionContext();
         ExecutionContext stepExecutionContext = chunkContext.getStepContext().getStepExecution().getExecutionContext();
 
         String jobName = chunkContext.getStepContext().getStepExecution().getJobExecution().getJobInstance().getJobName();

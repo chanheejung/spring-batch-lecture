@@ -15,9 +15,13 @@ public class ExecutionContextTasklet3 implements Tasklet {
 
         Object name = chunkContext.getStepContext().getStepExecution().getJobExecution().getExecutionContext().get("name");
 
+        /**
+         * Step3에서 실패했을때
+         * 다시 Job을 시작하면 기존 성공한 Step은 건너띄고 Step3부터 실행하는지 확인
+         */
         if(name == null){
             chunkContext.getStepContext().getStepExecution().getJobExecution().getExecutionContext().put("name", "user1");
-            throw new RuntimeException("step has failed");
+//            throw new RuntimeException("step3 has failed");
         }
 
         return RepeatStatus.FINISHED;
