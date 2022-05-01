@@ -20,8 +20,12 @@ public class ValidatorConfiguration {
     @Bean
     public Job batchJob() {
         return this.jobBuilderFactory.get("batchJob")
-                .validator(new CustomJobParametersValidator())
-//                .validator(new DefaultJobParametersValidator(new String[]{"name"},new String[]{"year"}))
+
+                /** 1. DefaultJobParametersValidator 구현체를 이용하여 제약조건 처리 */
+                .validator(new DefaultJobParametersValidator(new String[]{"name"},new String[]{"year"}))
+                /** 2. 복잡한 제약조건을 직접 구현하여 처리하는 방법 */
+//                .validator(new CustomJobParametersValidator())
+
                 .start(step1())
                 .next(step2())
                 .next(step3())
